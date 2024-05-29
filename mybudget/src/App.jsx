@@ -4,6 +4,8 @@ import LogReg from "./components/LogReg";
 import Log from "./components/Log";
 import Reg from "./components/Reg";
 import MainComponent from "./components/MainComponent";
+import Payments from "./components/Payments";
+import Cards from "./components/Cards";
 
 export default function App() {
 	return (
@@ -15,6 +17,8 @@ export default function App() {
 					<Route path='/log' element={<Log />} />
 					<Route path='/reg' element={<Reg />} />
 					<Route path='/main-component' element={<MainComponent />} />
+					<Route path='/payments' element={<Payments />} />
+					<Route path='/cards' element={<Cards />} />
 				</Routes>
 			</>
 		</Router>
