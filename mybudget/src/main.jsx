@@ -6,6 +6,7 @@ import "./sass/log-reg.scss";
 import "./sass/log-reg-component.scss";
 import "./sass/navigation.scss";
 import "./sass/main-component.scss";
+import "./sass/transactions.scss";
 import "./sass/payments.scss";
 import "./sass/cards.scss";
 

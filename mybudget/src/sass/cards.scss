@@ -16,19 +16,14 @@ body {
 	}
 	&__containers {
 		width: 100vw;
-		height: 100vh;
+		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		background-color: #a3fde7;
 	}
-	&__add-card-btn {
-		padding: 0.5em 1.5em;
-		margin-top: 2.5em;
-		background-color: #f7fbfc;
-		font-weight: bold;
-		border-radius: 5px;
-		cursor: pointer;
+	&__label {
+		margin-top: 2em;
 	}
 	&__container {
 		display: flex;
@@ -36,12 +31,13 @@ body {
 		align-items: center;
 	}
 	&__card {
-		margin: 2em 0 0;
-		width: 250px;
-		height: 150px;
+		position: relative;
+		margin-top: 2em;
+		width: 280px;
+		height: 180px;
 		display: flex;
 		flex-direction: column;
-		justify-content: space-between;
+		justify-content: space-around;
 		background-color: #15f5ba;
 		border-radius: 5px;
 		div {
@@ -52,11 +48,54 @@ body {
 			border-radius: 0;
 		}
 	}
-	&__object {
-	}
-	.card-name-date {
+	.first-input {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
+	}
+	.turn-around {
+		cursor: pointer;
+	}
+	&__object {
+		&:last-child {
+			display: flex;
+			justify-content: space-between;
+		}
+	}
+	.card-data {
+		padding: 0.5em 0.75em;
+		font-size: 0.8rem;
+		border-radius: 5px;
+		border: none;
+	}
+	.last-input {
+		width: 80%;
+	}
+	.card-last-data {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.cards-display-devide {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		.card-element-display-devide {
+			margin: 2em 2em 0;
+		}
+	}
+	.balance {
+		display: flex;
+		align-items: center;
+	}
+	&__add-card-btn {
+		padding: 0.5em 1.5em;
+		margin-top: 2em;
+		background-color: #f7fbfc;
+		font-size: 0.9rem;
+		font-weight: bold;
+		border-radius: 5px;
+		cursor: pointer;
 	}
 }
 @media (min-width: 376px) {
@@ -65,10 +104,26 @@ body {
 }
 @media (min-width: 576px) {
 	.cards {
+		&__label {
+			font-size: 1.3rem;
+		}
+		&__card {
+			width: 320px;
+			height: 200px;
+		}
+		.card-data {
+			font-size: 0.9rem;
+		}
+		&__add-card-btn {
+			font-size: 1rem;
+		}
 	}
 }
 @media (min-width: 768px) {
 	.cards {
+		&__label {
+			font-size: 1.5rem;
+		}
 		&__containers {
 			width: 80vw;
 		}

@@ -13,6 +13,11 @@ export default function MainComponent() {
 								<span className='material-symbols-outlined'>attach_money</span>Balance
 							</div>
 							<div className='main-component__name-component'>
+								<Link to='/transactions'>
+									<span className='material-symbols-outlined'>check_box</span>Transactions
+								</Link>
+							</div>
+							<div className='main-component__name-component'>
 								<Link to='/payments'>
 									<span className='material-symbols-outlined'>database</span>
 									Payments
@@ -23,9 +28,6 @@ export default function MainComponent() {
 									<span className='material-symbols-outlined'>credit_card</span>
 									Cards
 								</Link>
-							</div>
-							<div className='main-component__name-component'>
-								<span className='material-symbols-outlined'>check_box</span>Planned
 							</div>
 							<div className='main-component__name-component'>
 								<span className='material-symbols-outlined'>group</span>Groups
