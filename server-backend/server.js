@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const cors = require("cors");
 
@@ -19,6 +21,8 @@ const validatePassword = password => {
 app.get("/", (req, res) => {
 	res.send("MyBudget backend");
 });
+
+app.get("/register", (req, res) => {});
 
 app.post("/register", (req, res) => {
 	const { userLogin, userEmail, userPassword } = req.body;
