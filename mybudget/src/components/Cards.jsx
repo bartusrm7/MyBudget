@@ -11,7 +11,6 @@ export default function Cards() {
 
 	// UTWORZYĆ WARUNKI DO NAME(IMIE I NAZWISKO), NUMBER(ILOŚĆ CYFR), DATE(00/00) ITD.
 	const handleSwapCard = () => setIsSwaped(!isSwaped);
-
 	const createNewCard = () => {
 		const newCard = {
 			owner: ownerCard,
@@ -19,13 +18,14 @@ export default function Cards() {
 			expirationDate: dateCard,
 			balance: ownerBalance,
 		};
-		if (ownerCard === "" || numberCard === "" || dateCard === "" || ownerBalance) {
+		if (ownerCard === "" || numberCard === "" || dateCard === "") {
 			return;
 		}
 		setCards([...cards, newCard]);
 		setOwnerCard("");
 		setNumberCard("");
 		setDateCard("");
+		console.log(newCard);
 	};
 
 	return (
@@ -45,6 +45,9 @@ export default function Cards() {
 										value={ownerBalance}
 										onChange={e => setOwnerBalance(e.target.value)}
 									/>
+									<span class='material-symbols-outlined turn-around' onClick={handleSwapCard}>
+										replay
+									</span>
 								</div>
 							) : (
 								<div className='cards__card'>

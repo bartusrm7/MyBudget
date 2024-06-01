@@ -1,0 +1,67 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+body {
+	color: #222831;
+	font-family: "Inter", sans-serif;
+}
+.balance {
+	&__main-container {
+		display: flex;
+		justify-content: center;
+	}
+	&__containers {
+		width: 100vw;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #a3fde7;
+	}
+	&__label {
+		margin-top: 2em;
+	}
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+@media (min-width: 376px) {
+	.balance {
+	}
+}
+@media (min-width: 576px) {
+	.balance {
+		&__label {
+			font-size: 1.3rem;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.balance {
+		&__label {
+			font-size: 1.5rem;
+		}
+		&__containers {
+			width: 80vw;
+		}
+		&__container {
+			width: 100%;
+			flex-wrap: wrap;
+			flex-direction: row;
+			justify-content: space-evenly;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.balance {
+		&__containers {
+			width: 70vw;
+		}
+	}
+}

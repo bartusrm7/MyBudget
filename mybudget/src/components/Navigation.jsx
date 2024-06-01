@@ -27,9 +27,6 @@ export default function Navigation() {
 							</Link>
 						</div>
 						<div className='navigation__navigation-item'>
-							<span className='material-symbols-outlined'>calendar_month</span>Calendar
-						</div>
-						<div className='navigation__navigation-item'>
 							<span className='material-symbols-outlined'>monitoring</span>Statistics
 						</div>
 						<div className='navigation__navigation-item'>

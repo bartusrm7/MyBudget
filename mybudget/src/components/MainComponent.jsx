@@ -10,7 +10,9 @@ export default function MainComponent() {
 					<div className='main-component__containers'>
 						<div className='main-component__container'>
 							<div className='main-component__name-component'>
-								<span className='material-symbols-outlined'>attach_money</span>Balance
+								<Link to='/balance'>
+									<span className='material-symbols-outlined'>attach_money</span>Balance
+								</Link>
 							</div>
 							<div className='main-component__name-component'>
 								<Link to='/transactions'>
