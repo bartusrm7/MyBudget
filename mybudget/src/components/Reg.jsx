@@ -34,9 +34,11 @@ export default function Log() {
 			}
 			if (!validateEmail(userEmail)) {
 				console.log("Invalid email format!");
+				return;
 			}
 			if (!validatePassword(userPassword)) {
 				console.log("Password is to short!");
+				return;
 			}
 			const data = await response.json();
 			console.log("Registration successful:", data);

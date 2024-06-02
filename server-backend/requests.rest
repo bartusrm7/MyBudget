@@ -1,1 +1,22 @@
-GET http://localhost:5174/
+GET http://localhost:5174/register
+
+###
+
+POST http://localhost:5174/register
+Content-Type: application/json
+
+{
+  "userLogin": "baba",
+  "userEmail": "baba@ba.com",
+  "userPassword": "passw3232ord123"
+}
+
+###
+
+POST http://localhost:5174/login
+Content-Type: application/json
+
+{
+  "userEmail": "baba@ba.com",
+  "userPassword": "passw3232ord123"
+}

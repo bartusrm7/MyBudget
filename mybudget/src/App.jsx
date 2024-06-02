@@ -3,6 +3,7 @@ import StartPage from "./components/StartPage";
 import LogReg from "./components/LogReg";
 import Log from "./components/Log";
 import Reg from "./components/Reg";
+import ProtectedRoute from "./components/ProtectedRoute";
 import MainComponent from "./components/MainComponent";
 import Balance from "./components/Balance";
 import Transactions from "./components/Transactions";
@@ -18,7 +19,14 @@ export default function App() {
 					<Route path='/log-reg' element={<LogReg />} />
 					<Route path='/log' element={<Log />} />
 					<Route path='/reg' element={<Reg />} />
-					<Route path='/main-component' element={<MainComponent />} />
+					<Route
+						path='/main-component'
+						element={
+							<ProtectedRoute>
+								<MainComponent />
+							</ProtectedRoute>
+						}
+					/>
 					<Route path='/balance' element={<Balance />} />
 					<Route path='/transactions' element={<Transactions />} />
 					<Route path='/payments' element={<Payments />} />

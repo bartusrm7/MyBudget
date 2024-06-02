@@ -32,11 +32,14 @@ export default function Log() {
 			}
 			if (!validateEmail(userEmail)) {
 				console.log("Invalid email format!");
+				return;
 			}
 			if (!validatePassword(userPassword)) {
 				console.log("Password is to short!");
+				return;
 			}
 			const data = await response.json();
+			localStorage.setItem("Access Token", data.accessToken);
 			console.log("Registration successful:", data);
 
 			setIsLoginSuccessful(true);

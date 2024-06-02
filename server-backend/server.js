@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const express = require("express");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
 const app = express();
 const port = 5174;
@@ -22,11 +23,10 @@ app.get("/", (req, res) => {
 	res.send("MyBudget backend");
 });
 
-app.get("/register", (req, res) => {});
-
 app.post("/register", (req, res) => {
 	const { userLogin, userEmail, userPassword } = req.body;
 	const userExists = users.some(user => user.userEmail === userEmail);
+	const newUser = { userLogin, userEmail, userPassword };
 
 	if (userExists) {
 		return res.status(400).json({ message: "User already exists!" });
@@ -38,21 +38,21 @@ app.post("/register", (req, res) => {
 		return res.status(400).json({ message: "Password is to short!" });
 	}
 
-	users.push({ userLogin, userEmail, userPassword });
-	res.status(200).json({ message: "User registered successfully!" });
-
-	console.log(userExists);
-	console.log(users);
+	users.push(newUser);
+	res.status(200).json({ message: "User registered successfully!", users });
 });
 
 app.post("/login", (req, res) => {
 	const { userEmail, userPassword } = req.body;
 	const user = users.find(user => user.userEmail === userEmail || user.userPassword === userPassword);
+	const payload = { userEmail: user.userEmail };
+	const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10min" });
+
 	if (!user) {
 		return res.status(400).json({ message: "Invalid username or password!" });
 	}
 
-	res.status(200).json({ message: "User loged successfully!" });
+	res.json({ accessToken: accessToken });
 });
 
 app.listen(port, () => {
