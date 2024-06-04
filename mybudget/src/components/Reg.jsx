@@ -41,6 +41,7 @@ export default function Log() {
 				return;
 			}
 			const data = await response.json();
+			localStorage.setItem("accessToken", data.accessToken);
 			console.log("Registration successful:", data);
 
 			setIsRegisteredSuccessful(true);

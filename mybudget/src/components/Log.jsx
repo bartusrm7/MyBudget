@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Log() {
+	const [userLogin, setUserLogin] = useState("");
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
 	const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
@@ -39,8 +40,10 @@ export default function Log() {
 				return;
 			}
 			const data = await response.json();
-			localStorage.setItem("Access Token", data.accessToken);
+			localStorage.setItem("accessToken", data.accessToken);
 			console.log("Registration successful:", data);
+			console.log(userLoginData);
+			console.log(userLogin);
 
 			setIsLoginSuccessful(true);
 			navigate("/main-component");

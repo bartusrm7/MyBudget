@@ -1,10 +1,18 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navigation() {
 	const [hamburgerMenu, setHamburgerMenu] = useState(false);
+	const navigate = useNavigate();
 	const handleHamburgerMenu = () => {
 		setHamburgerMenu(!hamburgerMenu);
+	};
+	const accountName = () => {
+		
+	}
+	const handleLogout = () => {
+		localStorage.removeItem("accessToken");
+		navigate("/log");
 	};
 
 	return (
@@ -30,10 +38,13 @@ export default function Navigation() {
 							<span className='material-symbols-outlined'>monitoring</span>Statistics
 						</div>
 						<div className='navigation__navigation-item'>
-							<span className='material-symbols-outlined'>person</span>Account
+							<span className='material-symbols-outlined'>settings</span>Settings
 						</div>
 						<div className='navigation__navigation-item'>
-							<span className='material-symbols-outlined'>settings</span>Settings
+							<span className='material-symbols-outlined'>person</span>Account
+						</div>
+						<div className='navigation__navigation-item' onClick={handleLogout}>
+							<span className='material-symbols-outlined'>logout</span>Logout
 						</div>
 					</div>
 				</div>

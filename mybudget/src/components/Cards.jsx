@@ -45,7 +45,7 @@ export default function Cards() {
 										value={ownerBalance}
 										onChange={e => setOwnerBalance(e.target.value)}
 									/>
-									<span class='material-symbols-outlined turn-around' onClick={handleSwapCard}>
+									<span className='material-symbols-outlined turn-around' onClick={handleSwapCard}>
 										replay
 									</span>
 								</div>
@@ -59,7 +59,7 @@ export default function Cards() {
 											value={ownerCard}
 											onChange={e => setOwnerCard(e.target.value)}
 										/>
-										<span class='material-symbols-outlined turn-around' onClick={handleSwapCard}>
+										<span className='material-symbols-outlined turn-around' onClick={handleSwapCard}>
 											replay
 										</span>
 									</div>

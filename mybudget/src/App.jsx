@@ -27,10 +27,38 @@ export default function App() {
 							</ProtectedRoute>
 						}
 					/>
-					<Route path='/balance' element={<Balance />} />
-					<Route path='/transactions' element={<Transactions />} />
-					<Route path='/payments' element={<Payments />} />
-					<Route path='/cards' element={<Cards />} />
+					<Route
+						path='/balance'
+						element={
+							<ProtectedRoute>
+								<Balance />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/transactions'
+						element={
+							<ProtectedRoute>
+								<Transactions />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/payments'
+						element={
+							<ProtectedRoute>
+								<Payments />
+							</ProtectedRoute>
+						}
+					/>
+					<Route
+						path='/cards'
+						element={
+							<ProtectedRoute>
+								<Cards />
+							</ProtectedRoute>
+						}
+					/>
 				</Routes>
 			</>
 		</Router>

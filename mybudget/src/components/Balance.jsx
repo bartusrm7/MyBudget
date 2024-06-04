@@ -6,7 +6,7 @@ export default function Balance() {
 			<Navigation />
 			<div className='balance'>
 				<div className='balance__main-container'>
-					<div className='main__containers'></div>
+					<div className='balance__containers'></div>
 				</div>
 			</div>
 		</div>
