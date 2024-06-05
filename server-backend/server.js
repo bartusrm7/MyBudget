@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 let users = [];
+let cards = [];
 
 const validateEmail = email => {
 	const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -42,10 +43,8 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-	const { userLogin, userEmail, userPassword } = req.body;
-	const user = users.find(
-		user => user.userLogin === userLogin || user.userEmail === userEmail || user.userPassword === userPassword
-	);
+	const { userEmail, userPassword } = req.body;
+	const user = users.find(user => user.userEmail === userEmail || user.userPassword === userPassword);
 	const payload = { userEmail: user.userEmail };
 	const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10min" });
 
@@ -53,9 +52,7 @@ app.post("/login", (req, res) => {
 		return res.status(400).json({ message: "Invalid username or password!" });
 	}
 
-	console.log(users);
-	console.log(userLogin);
-	res.json({ accessToken: accessToken }, user, userLogin);
+	res.json({ accessToken: accessToken });
 });
 
 app.listen(port, () => {

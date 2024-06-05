@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
 
 export default function Cards() {
@@ -18,15 +18,48 @@ export default function Cards() {
 			expirationDate: dateCard,
 			balance: ownerBalance,
 		};
-		if (ownerCard === "" || numberCard === "" || dateCard === "") {
+		if (ownerCard === "" || numberCard === "" || dateCard === "" || ownerBalance === "") {
 			return;
 		}
-		setCards([...cards, newCard]);
+		const updatedCards = [...cards, newCard];
+		setCards(updatedCards);
+		localStorage.setItem("cards", JSON.stringify(updatedCards));
 		setOwnerCard("");
 		setNumberCard("");
 		setDateCard("");
-		console.log(newCard);
+		setOwnerBalance("");
 	};
+	useEffect(() => {
+		const savedCards = localStorage.getItem("cards");
+		if (savedCards) {
+			setCards(JSON.parse(savedCards));
+		}
+	}, []);
+
+	// const handleCard = async () => {
+	// 	try {
+	// 		const response = await fetch("http://localhost:5174/save-card", {
+	// 			method: "POST",
+	// 			headers: {
+	// 				"Content-Type": "application/json",
+	// 			},
+	// 			body: JSON.stringify({
+	// 				owner: ownerCard,
+	// 				number: numberCard,
+	// 				expirationDate: dateCard,
+	// 				balance: ownerBalance,
+	// 			}),
+	// 		});
+	// 		if (!response.ok) {
+	// 			throw Error("Error!");
+	// 		}
+	// 		createNewCard();
+	// 		const data = await response.json();
+	// 		console.log("Card data:", data);
+	// 	} catch (error) {
+	// 		console.error("Error:", error);
+	// 	}
+	// };
 
 	return (
 		<div>
@@ -92,11 +125,11 @@ export default function Cards() {
 						<div className='cards__card-container cards-display-devide'>
 							{cards.map((card, index) => (
 								<div key={index} className='cards__card card-element-display-devide'>
-									<div className='cards__object'> {card.owner}</div>
-									<div className='cards__object'> {card.number}</div>
+									<div className='cards__object card-view'> {card.owner}</div>
+									<div className='cards__object card-view'> {card.number}</div>
 									<div className='cards__object card-last-data'>
 										<span>Card</span>
-										{card.expirationDate}
+										<span className='card-view'>{card.expirationDate}</span>
 									</div>
 								</div>
 							))}
