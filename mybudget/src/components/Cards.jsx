@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Card from "react-credit-cards-2";
 import Navigation from "./Navigation";
 
 export default function Cards() {
@@ -18,7 +19,7 @@ export default function Cards() {
 			expirationDate: dateCard,
 			balance: ownerBalance,
 		};
-		if (ownerCard === "" || numberCard === "" || dateCard === "" || ownerBalance === "") {
+		if (ownerCard === "" || numberCard.length !== 16 || dateCard.length !== 4 || ownerBalance === "") {
 			return;
 		}
 		const updatedCards = [...cards, newCard];
@@ -35,31 +36,6 @@ export default function Cards() {
 			setCards(JSON.parse(savedCards));
 		}
 	}, []);
-
-	// const handleCard = async () => {
-	// 	try {
-	// 		const response = await fetch("http://localhost:5174/save-card", {
-	// 			method: "POST",
-	// 			headers: {
-	// 				"Content-Type": "application/json",
-	// 			},
-	// 			body: JSON.stringify({
-	// 				owner: ownerCard,
-	// 				number: numberCard,
-	// 				expirationDate: dateCard,
-	// 				balance: ownerBalance,
-	// 			}),
-	// 		});
-	// 		if (!response.ok) {
-	// 			throw Error("Error!");
-	// 		}
-	// 		createNewCard();
-	// 		const data = await response.json();
-	// 		console.log("Card data:", data);
-	// 	} catch (error) {
-	// 		console.error("Error:", error);
-	// 	}
-	// };
 
 	return (
 		<div>
