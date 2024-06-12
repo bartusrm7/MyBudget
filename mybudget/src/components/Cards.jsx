@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Card from "react-credit-cards-2";
 import Navigation from "./Navigation";
 
 export default function Cards() {
@@ -19,7 +18,7 @@ export default function Cards() {
 			expirationDate: dateCard,
 			balance: ownerBalance,
 		};
-		if (ownerCard === "" || numberCard.length !== 16 || dateCard.length !== 4 || ownerBalance === "") {
+		if (ownerCard === "" || numberCard.length !== 26 || dateCard.length !== 4 || ownerBalance === "") {
 			return;
 		}
 		const updatedCards = [...cards, newCard];
@@ -101,7 +100,9 @@ export default function Cards() {
 						<div className='cards__card-container cards-display-devide'>
 							{cards.map((card, index) => (
 								<div key={index} className='cards__card card-element-display-devide'>
-									<div className='cards__object card-view'> {card.owner}</div>
+									<div className='cards__object card-view' style={{ textTransform: "capitalize" }}>
+										{card.owner}
+									</div>
 									<div className='cards__object card-view'> {card.number}</div>
 									<div className='cards__object card-last-data'>
 										<span>Card</span>
