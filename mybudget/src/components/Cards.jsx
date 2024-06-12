@@ -1,15 +1,20 @@
 import { useEffect, useState } from "react";
 import Navigation from "./Navigation";
+import { useBalanceContext } from "./BalanceContext";
 
 export default function Cards() {
 	const [isSwaped, setIsSwaped] = useState(false);
 	const [ownerCard, setOwnerCard] = useState("");
 	const [numberCard, setNumberCard] = useState("");
 	const [dateCard, setDateCard] = useState("");
-	const [ownerBalance, setOwnerBalance] = useState("");
+	// const [ownerBalance, setOwnerBalance] = useState("");
 	const [cards, setCards] = useState([]);
+	const { ownerBalance, setOwnerBalance } = useBalanceContext();
 
-	// UTWORZYĆ WARUNKI DO NAME(IMIE I NAZWISKO), NUMBER(ILOŚĆ CYFR), DATE(00/00) ITD.
+	const handleOwnerBalanceChange = event => {
+		setOwnerBalance(event.target.value);
+	};
+
 	const handleSwapCard = () => setIsSwaped(!isSwaped);
 	const createNewCard = () => {
 		const newCard = {
@@ -24,6 +29,7 @@ export default function Cards() {
 		const updatedCards = [...cards, newCard];
 		setCards(updatedCards);
 		localStorage.setItem("cards", JSON.stringify(updatedCards));
+
 		setOwnerCard("");
 		setNumberCard("");
 		setDateCard("");
@@ -51,7 +57,7 @@ export default function Cards() {
 										type='number'
 										placeholder='Enter owner balance...'
 										value={ownerBalance}
-										onChange={e => setOwnerBalance(e.target.value)}
+										onChange={handleOwnerBalanceChange}
 									/>
 									<span className='material-symbols-outlined turn-around' onClick={handleSwapCard}>
 										replay

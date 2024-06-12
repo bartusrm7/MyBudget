@@ -1,7 +1,9 @@
+import { useBalanceContext } from "./BalanceContext";
 import Navigation from "./Navigation";
 
-export default function Balance({ ownerBalance }) {
-	console.log(ownerBalance);
+export default function Balance() {
+	const { ownerBalance } = useBalanceContext;
+
 	return (
 		<div>
 			<Navigation />
