@@ -62,6 +62,7 @@ export default function Cards() {
 										<span className='material-symbols-outlined turn-around' onClick={handleSwapCard}>
 											replay
 										</span>
+										
 									</div>
 									<div className='cards__object'>
 										<input
