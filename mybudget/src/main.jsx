@@ -10,6 +10,7 @@ import "./sass/balance.scss";
 import "./sass/transactions.scss";
 import "./sass/payments.scss";
 import "./sass/cards.scss";
+import "./sass/groups.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
 	<React.StrictMode>

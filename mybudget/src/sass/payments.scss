@@ -16,7 +16,7 @@ body {
 	}
 	&__containers {
 		width: 100vw;
-		height: 100vh;
+		min-height: 90vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -48,6 +48,9 @@ body {
 }
 @media (min-width: 576px) {
 	.payments {
+		&__containers {
+			min-height: 85vh;
+		}
 		&__container-name {
 			font-size: 1rem;
 		}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import Navigation from "./Navigation";
 import { useBalanceContext } from "./BalanceContext";
+import { v4 as uuidv4 } from "uuid";
+import Navigation from "./Navigation";
 
 export default function Cards() {
 	const [isSwaped, setIsSwaped] = useState(false);
@@ -10,10 +11,9 @@ export default function Cards() {
 	const { ownerBalance, setOwnerBalance, cards, setCards, activeCard, setActiveCard } = useBalanceContext();
 
 	const handleSwapCard = () => setIsSwaped(!isSwaped);
-
 	const createNewCard = () => {
 		const newCard = {
-			id: Date.now(),
+			id: uuidv4(),
 			owner: ownerCard,
 			number: numberCard,
 			expirationDate: dateCard,
@@ -43,16 +43,16 @@ export default function Cards() {
 	};
 
 	const deleteCard = id => {
-		const updatedCardsAfterRemove = cards.filter(card => card.id !== id);
-		setCards(updatedCardsAfterRemove);
-		localStorage.setItem("cards", JSON.stringify(updatedCardsAfterRemove));
+		const updatedCardAfterRemove = cards.filter(card => card.id !== id);
+		setCards(updatedCardAfterRemove);
+		localStorage.setItem("cards", JSON.stringify(updatedCardAfterRemove));
 
 		if (activeCard && activeCard.id === id) {
 			setActiveCard(null);
-			localStorage.removeItem(activeCard);
+			localStorage.removeItem("activeCard");
 		}
 		if (activeCard && activeCard.id === "") {
-			ownerBalance("");
+			setOwnerBalance("");
 		}
 	};
 

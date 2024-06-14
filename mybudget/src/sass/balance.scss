@@ -16,19 +16,21 @@ body {
 	}
 	&__containers {
 		width: 100vw;
-		min-height: 100vh;
+		height: 90vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		background-color: #a3fde7;
 	}
 	&__label {
-		margin-top: 2em;
+		margin: 2em;
 	}
 	&__container {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+	&__current-balance {
 	}
 }
 @media (min-width: 376px) {
@@ -39,6 +41,9 @@ body {
 	.balance {
 		&__label {
 			font-size: 1.3rem;
+		}
+		&__containers {
+			height: 85vh;
 		}
 	}
 }

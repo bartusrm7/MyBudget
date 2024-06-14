@@ -10,6 +10,7 @@ import BalanceProvider from "./components/BalanceContext";
 import Transactions from "./components/Transactions";
 import Payments from "./components/Payments";
 import Cards from "./components/Cards";
+import Groups from "./components/Groups";
 
 export default function App() {
 	return (
@@ -58,6 +59,14 @@ export default function App() {
 							element={
 								<ProtectedRoute>
 									<Cards />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path='/groups'
+							element={
+								<ProtectedRoute>
+									<Groups />
 								</ProtectedRoute>
 							}
 						/>

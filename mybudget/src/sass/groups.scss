@@ -9,7 +9,7 @@ body {
 	color: #222831;
 	font-family: "Inter", sans-serif;
 }
-.transactions {
+.groups {
 	&__main-container {
 		display: flex;
 		justify-content: center;
@@ -25,6 +25,18 @@ body {
 	&__label {
 		margin: 2em;
 	}
+	&__group-input {
+		padding: 0.5em;
+		margin: 0.25em 0;
+		width: 70%;
+		background-color: #f7fbfc;
+		font-size: 0.8rem;
+		border-radius: 5px;
+		border: 1px solid #222831;
+		&::placeholder {
+			color: #222831;
+		}
+	}
 	&__container-name {
 		margin: 1em;
 		display: flex;
@@ -38,10 +50,16 @@ body {
 	}
 }
 @media (min-width: 376px) {
-	.transactions {
+	.groups {
 		&__container {
 			span {
 				padding: 0.75em;
+			}
+		}
+		&__group-input {
+			margin: 2em 0 1em;
+			input {
+				width: 60%;
 			}
 		}
 		&__container-name {
@@ -50,7 +68,7 @@ body {
 	}
 }
 @media (min-width: 576px) {
-	.transactions {
+	.groups {
 		&__containers {
 			min-height: 85vh;
 		}
@@ -60,12 +78,10 @@ body {
 		&__container-name {
 			font-size: 1rem;
 		}
-		&__container {
-		}
 	}
 }
 @media (min-width: 768px) {
-	.transactions {
+	.groups {
 		&__containers {
 			width: 80vw;
 		}
@@ -75,12 +91,10 @@ body {
 		&__container-name {
 			font-size: 1.1rem;
 		}
-		&__container {
-		}
 	}
 }
 @media (min-width: 992px) {
-	.transactions {
+	.groups {
 		&__containers {
 			width: 70vw;
 		}

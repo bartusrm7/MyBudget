@@ -7,9 +7,6 @@ export default function Navigation() {
 	const handleHamburgerMenu = () => {
 		setHamburgerMenu(!hamburgerMenu);
 	};
-	const accountName = () => {
-		
-	}
 	const handleLogout = () => {
 		localStorage.removeItem("accessToken");
 		navigate("/log");
