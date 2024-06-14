@@ -32,7 +32,9 @@ export default function MainComponent() {
 								</Link>
 							</div>
 							<div className='main-component__name-component'>
-								<span className='material-symbols-outlined'>group</span>Groups
+								<Link to='/groups'>
+									<span className='material-symbols-outlined'>group</span>Groups
+								</Link>
 							</div>
 						</div>
 					</div>

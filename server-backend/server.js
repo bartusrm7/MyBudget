@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 let users = [];
+let cards = [];
 
 const validateEmail = email => {
 	const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -19,8 +20,34 @@ const validatePassword = password => {
 	return password.length >= 8;
 };
 
-app.get("/", (req, res) => {
-	res.send("MyBudget backend");
+const authenticateToken = (req, res, next) => {
+	const authHeader = req.headers["authorization"];
+	const token = authHeader && authHeader.split(" ")[1];
+
+	if (token == null) return res.sendStatus(401);
+	jwt.verify(token.process.env.ACCESS_TOKEN_SECRET, (err, users) => {
+		if (err) return res.sendStatus(403);
+		req.users = users;
+		next();
+	});
+};
+
+app.get("/cards", authenticateToken, (req, res) => {
+	const userCards = cards.filter(card => card.userEmail === req.card.userEmail);
+	res.json(userCards);
+});
+
+app.post("/cards", authenticateToken, (req, res) => {
+	const { owner, number, expirationDate, balance } = req.body;
+	const newCard = {
+		userEmail: req.user.userEmail,
+		owner,
+		number,
+		expirationDate,
+		balance,
+	};
+	cards.push(newCard);
+	res.status(201).json(newCard);
 });
 
 app.post("/register", (req, res) => {
@@ -42,20 +69,16 @@ app.post("/register", (req, res) => {
 });
 
 app.post("/login", (req, res) => {
-	const { userLogin, userEmail, userPassword } = req.body;
-	const user = users.find(
-		user => user.userLogin === userLogin || user.userEmail === userEmail || user.userPassword === userPassword
-	);
+	const { userEmail, userPassword } = req.body;
+	const user = users.find(user => user.userEmail === userEmail || user.userPassword === userPassword);
 	const payload = { userEmail: user.userEmail };
-	const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "10min" });
+	const accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "5min" });
 
 	if (!user) {
 		return res.status(400).json({ message: "Invalid username or password!" });
 	}
 
-	console.log(users);
-	console.log(userLogin);
-	res.json({ accessToken: accessToken }, user, userLogin);
+	res.json({ accessToken: accessToken });
 });
 
 app.listen(port, () => {

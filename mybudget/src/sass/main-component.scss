@@ -16,7 +16,7 @@ body {
 	}
 	&__containers {
 		width: 100vw;
-		height: 100vh;
+		min-height: 90vh;
 		background-color: #a3fde7;
 	}
 	&__container {
@@ -60,6 +60,9 @@ body {
 }
 @media (min-width: 576px) {
 	.main-component {
+		&__containers {
+			min-height: 85vh;
+		}
 		&__container {
 			flex-wrap: nowrap;
 			span {

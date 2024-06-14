@@ -16,11 +16,14 @@ body {
 	}
 	&__containers {
 		width: 100vw;
-		height: 100vh;
+		min-height: 90vh;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		background-color: #a3fde7;
+	}
+	&__label {
+		margin: 2em;
 	}
 	&__container-name {
 		margin: 1em;
@@ -48,6 +51,12 @@ body {
 }
 @media (min-width: 576px) {
 	.transactions {
+		&__containers {
+			min-height: 85vh;
+		}
+		&__label {
+			font-size: 1.3rem;
+		}
 		&__container-name {
 			font-size: 1rem;
 		}
@@ -59,6 +68,9 @@ body {
 	.transactions {
 		&__containers {
 			width: 80vw;
+		}
+		&__label {
+			font-size: 1.5rem;
 		}
 		&__container-name {
 			font-size: 1.1rem;

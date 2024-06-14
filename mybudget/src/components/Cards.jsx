@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useBalanceContext } from "./BalanceContext";
+import { v4 as uuidv4 } from "uuid";
 import Navigation from "./Navigation";
 
 export default function Cards() {
@@ -6,27 +8,64 @@ export default function Cards() {
 	const [ownerCard, setOwnerCard] = useState("");
 	const [numberCard, setNumberCard] = useState("");
 	const [dateCard, setDateCard] = useState("");
-	const [ownerBalance, setOwnerBalance] = useState("");
-	const [cards, setCards] = useState([]);
+	const { ownerBalance, setOwnerBalance, cards, setCards, activeCard, setActiveCard } = useBalanceContext();
 
-	// UTWORZYĆ WARUNKI DO NAME(IMIE I NAZWISKO), NUMBER(ILOŚĆ CYFR), DATE(00/00) ITD.
 	const handleSwapCard = () => setIsSwaped(!isSwaped);
 	const createNewCard = () => {
 		const newCard = {
+			id: uuidv4(),
 			owner: ownerCard,
 			number: numberCard,
 			expirationDate: dateCard,
 			balance: ownerBalance,
 		};
-		if (ownerCard === "" || numberCard === "" || dateCard === "") {
+		if (ownerCard === "" || numberCard.length !== 26 || dateCard.length !== 4 || ownerBalance === "") {
 			return;
 		}
-		setCards([...cards, newCard]);
+		const updatedCards = [...cards, newCard];
+		setCards(updatedCards);
+		localStorage.setItem("cards", JSON.stringify(updatedCards));
+
 		setOwnerCard("");
 		setNumberCard("");
 		setDateCard("");
-		console.log(newCard);
 	};
+
+	const handleActiveCard = card => {
+		if (activeCard && activeCard.id === card.id) {
+			setActiveCard(null);
+			localStorage.removeItem("activeCard");
+		} else {
+			setActiveCard(card);
+			setOwnerBalance(card.balance);
+			localStorage.setItem("activeCard", JSON.stringify(card));
+		}
+	};
+
+	const deleteCard = id => {
+		const updatedCardAfterRemove = cards.filter(card => card.id !== id);
+		setCards(updatedCardAfterRemove);
+		localStorage.setItem("cards", JSON.stringify(updatedCardAfterRemove));
+
+		if (activeCard && activeCard.id === id) {
+			setActiveCard(null);
+			localStorage.removeItem("activeCard");
+		}
+		if (activeCard && activeCard.id === "") {
+			setOwnerBalance("");
+		}
+	};
+
+	useEffect(() => {
+		const savedCards = localStorage.getItem("cards");
+		if (savedCards) {
+			setCards(JSON.parse(savedCards));
+		}
+		const savedActiveCard = localStorage.getItem("activeCard");
+		if (savedActiveCard) {
+			setActiveCard(JSON.parse(savedActiveCard));
+		}
+	}, []);
 
 	return (
 		<div>
@@ -64,7 +103,7 @@ export default function Cards() {
 										</span>
 										
 									</div>
-									<div className='cards__object'>
+									<div className='cards__object first-input'>
 										<input
 											className='card-data'
 											type='number'
@@ -92,12 +131,29 @@ export default function Cards() {
 
 						<div className='cards__card-container cards-display-devide'>
 							{cards.map((card, index) => (
-								<div key={index} className='cards__card card-element-display-devide'>
-									<div className='cards__object'> {card.owner}</div>
-									<div className='cards__object'> {card.number}</div>
+								<div
+									key={index}
+									className={`cards__card card-element-display-devide ${
+										activeCard && activeCard.id === card.id ? "active-card" : ""
+									}`}
+									onClick={() => handleActiveCard(card)}>
+									<div className='cards__object first-object-input'>
+										<div className='card-view' style={{ textTransform: "capitalize" }}>
+											{card.owner}
+										</div>
+										<span
+											className='material-symbols-outlined turn-around delete-card'
+											onClick={e => {
+												e.stopPropagation();
+												deleteCard(card.id);
+											}}>
+											delete
+										</span>
+									</div>
+									<div className='cards__object card-view'>{card.number}</div>
 									<div className='cards__object card-last-data'>
 										<span>Card</span>
-										{card.expirationDate}
+										<span className='card-view'>{card.expirationDate}</span>
 									</div>
 								</div>
 							))}
