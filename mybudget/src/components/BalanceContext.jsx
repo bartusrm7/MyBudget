@@ -1,13 +1,17 @@
 import React, { createContext, useContext, useState } from "react";
 
-const BalanceContextToPass = createContext();
+const BalanceContext = createContext();
 
-export default function BalanceContext({ balance }) {
+export default function BalanceProvider({ children }) {
 	const [ownerBalance, setOwnerBalance] = useState("");
+	const [cards, setCards] = useState([]);
+	const [activeCard, setActiveCard] = useState(null);
 
 	return (
-		<BalanceContextToPass.Provider value={{ ownerBalance, setOwnerBalance }}>{balance}</BalanceContextToPass.Provider>
+		<BalanceContext.Provider value={{ ownerBalance, setOwnerBalance, cards, setCards, activeCard, setActiveCard }}>
+			{children}
+		</BalanceContext.Provider>
 	);
 }
 
-export const useBalanceContext = () => useContext(BalanceContextToPass);
+export const useBalanceContext = () => useContext(BalanceContext);

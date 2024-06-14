@@ -7,15 +7,19 @@ export default function Cards() {
 	const [ownerCard, setOwnerCard] = useState("");
 	const [numberCard, setNumberCard] = useState("");
 	const [dateCard, setDateCard] = useState("");
-	// const [ownerBalance, setOwnerBalance] = useState("");
-	const [cards, setCards] = useState([]);
-	const { ownerBalance, setOwnerBalance } = useBalanceContext();
-
-	const handleOwnerBalanceChange = event => {
-		setOwnerBalance(event.target.value);
-	};
+	const { ownerBalance, setOwnerBalance, cards, setCards, activeCard, setActiveCard } = useBalanceContext();
 
 	const handleSwapCard = () => setIsSwaped(!isSwaped);
+	const handleActiveCard = card => {
+		if (card === activeCard) {
+			setActiveCard(null);
+			localStorage.removeItem("active-card");
+		} else {
+			setActiveCard(card);
+			setOwnerBalance(card.balance);
+			localStorage.setItem("active-card", JSON.stringify(activeCard));
+		}
+	};
 	const createNewCard = () => {
 		const newCard = {
 			owner: ownerCard,
@@ -33,14 +37,23 @@ export default function Cards() {
 		setOwnerCard("");
 		setNumberCard("");
 		setDateCard("");
-		setOwnerBalance("");
 	};
 	useEffect(() => {
 		const savedCards = localStorage.getItem("cards");
 		if (savedCards) {
 			setCards(JSON.parse(savedCards));
 		}
+		const savedActiveCard = localStorage.getItem("active-card");
+		if (savedActiveCard) {
+			setActiveCard(JSON.parse(savedActiveCard));
+		}
 	}, []);
+	const deleteCard = () => {
+		console.log(cards);
+		setCards(prevState => ({
+			...prevState,
+		}));
+	};
 
 	return (
 		<div>
@@ -57,7 +70,7 @@ export default function Cards() {
 										type='number'
 										placeholder='Enter owner balance...'
 										value={ownerBalance}
-										onChange={handleOwnerBalanceChange}
+										onChange={e => setOwnerBalance(e.target.value)}
 									/>
 									<span className='material-symbols-outlined turn-around' onClick={handleSwapCard}>
 										replay
@@ -77,7 +90,7 @@ export default function Cards() {
 											replay
 										</span>
 									</div>
-									<div className='cards__object'>
+									<div className='cards__object first-input'>
 										<input
 											className='card-data'
 											type='number'
@@ -105,11 +118,19 @@ export default function Cards() {
 
 						<div className='cards__card-container cards-display-devide'>
 							{cards.map((card, index) => (
-								<div key={index} className='cards__card card-element-display-devide'>
-									<div className='cards__object card-view' style={{ textTransform: "capitalize" }}>
-										{card.owner}
+								<div
+									key={index}
+									className={`cards__card card-element-display-devide ${activeCard === card ? "active-card" : ""}`}
+									onClick={() => handleActiveCard(card)}>
+									<div className='cards__object first-object-input'>
+										<div className='card-view' style={{ textTransform: "capitalize" }}>
+											{card.owner}
+										</div>
+										<span className='material-symbols-outlined turn-around' onClick={e => deleteCard(e.target.value)}>
+											delete
+										</span>
 									</div>
-									<div className='cards__object card-view'> {card.number}</div>
+									<div className='cards__object card-view'>{card.number}</div>
 									<div className='cards__object card-last-data'>
 										<span>Card</span>
 										<span className='card-view'>{card.expirationDate}</span>

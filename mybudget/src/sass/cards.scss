@@ -107,6 +107,18 @@ body {
 		border-radius: 5px;
 		cursor: pointer;
 	}
+	.first-object-input {
+		margin: 0;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		span {
+			margin-right: 0.75em;
+		}
+	}
+}
+.active-card {
+	background-color: black;
 }
 @media (min-width: 376px) {
 	.cards {
