@@ -10,18 +10,10 @@ export default function Cards() {
 	const { ownerBalance, setOwnerBalance, cards, setCards, activeCard, setActiveCard } = useBalanceContext();
 
 	const handleSwapCard = () => setIsSwaped(!isSwaped);
-	const handleActiveCard = card => {
-		if (card === activeCard) {
-			setActiveCard(null);
-			localStorage.removeItem("active-card");
-		} else {
-			setActiveCard(card);
-			setOwnerBalance(card.balance);
-			localStorage.setItem("active-card", JSON.stringify(activeCard));
-		}
-	};
+
 	const createNewCard = () => {
 		const newCard = {
+			id: Date.now(),
 			owner: ownerCard,
 			number: numberCard,
 			expirationDate: dateCard,
@@ -38,22 +30,42 @@ export default function Cards() {
 		setNumberCard("");
 		setDateCard("");
 	};
+
+	const handleActiveCard = card => {
+		if (activeCard && activeCard.id === card.id) {
+			setActiveCard(null);
+			localStorage.removeItem("activeCard");
+		} else {
+			setActiveCard(card);
+			setOwnerBalance(card.balance);
+			localStorage.setItem("activeCard", JSON.stringify(card));
+		}
+	};
+
+	const deleteCard = id => {
+		const updatedCardsAfterRemove = cards.filter(card => card.id !== id);
+		setCards(updatedCardsAfterRemove);
+		localStorage.setItem("cards", JSON.stringify(updatedCardsAfterRemove));
+
+		if (activeCard && activeCard.id === id) {
+			setActiveCard(null);
+			localStorage.removeItem(activeCard);
+		}
+		if (activeCard && activeCard.id === "") {
+			ownerBalance("");
+		}
+	};
+
 	useEffect(() => {
 		const savedCards = localStorage.getItem("cards");
 		if (savedCards) {
 			setCards(JSON.parse(savedCards));
 		}
-		const savedActiveCard = localStorage.getItem("active-card");
+		const savedActiveCard = localStorage.getItem("activeCard");
 		if (savedActiveCard) {
 			setActiveCard(JSON.parse(savedActiveCard));
 		}
 	}, []);
-	const deleteCard = () => {
-		console.log(cards);
-		setCards(prevState => ({
-			...prevState,
-		}));
-	};
 
 	return (
 		<div>
@@ -120,13 +132,20 @@ export default function Cards() {
 							{cards.map((card, index) => (
 								<div
 									key={index}
-									className={`cards__card card-element-display-devide ${activeCard === card ? "active-card" : ""}`}
+									className={`cards__card card-element-display-devide ${
+										activeCard && activeCard.id === card.id ? "active-card" : ""
+									}`}
 									onClick={() => handleActiveCard(card)}>
 									<div className='cards__object first-object-input'>
 										<div className='card-view' style={{ textTransform: "capitalize" }}>
 											{card.owner}
 										</div>
-										<span className='material-symbols-outlined turn-around' onClick={e => deleteCard(e.target.value)}>
+										<span
+											className='material-symbols-outlined turn-around delete-card'
+											onClick={e => {
+												e.stopPropagation();
+												deleteCard(card.id);
+											}}>
 											delete
 										</span>
 									</div>

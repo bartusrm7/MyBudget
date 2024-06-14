@@ -6,10 +6,9 @@ export default function Balance() {
 	const { activeCard, setActiveCard } = useBalanceContext();
 
 	useEffect(() => {
-		const savedActiveCard = localStorage.getItem("active-card");
+		const savedActiveCard = localStorage.getItem("activeCard");
 		if (savedActiveCard) {
 			setActiveCard(JSON.parse(savedActiveCard));
-			activeCard.balance;
 		}
 	}, []);
 
