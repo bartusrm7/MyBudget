@@ -25,16 +25,44 @@ body {
 	&__label {
 		margin: 2em;
 	}
-	&__container-name {
-		margin: 1em;
+	&__transaction-container {
 		display: flex;
-		justify-content: center;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
 	}
-	&__container {
-		width: 90vw;
+	&__transaction-name {
+		margin-bottom: 5px;
+		text-align: center;
+		font-weight: bold;
 	}
-	&__type-name {
-		background-color: #15f5ba;
+	&__transaction-field {
+		margin: 0.25em 2em;
+		font-size: 0.9rem;
+		input,
+		textarea,
+		select {
+			padding: 0.25em 0.5em;
+			width: 150px;
+			height: 27px;
+			font-size: 0.8rem;
+			border-radius: 5px;
+			border: 1px solid #222831;
+		}
+		textarea {
+			max-width: 150px;
+			min-width: 150px;
+			max-height: 200px;
+		}
+	}
+	&__add-transaction-btn {
+		padding: 0.5em 0.75em;
+		margin: 2em 0;
+		background-color: #f7fbfc;
+		font-size: 0.9rem;
+		font-weight: bold;
+		border-radius: 5px;
+		border: 1px solid #222831;
+		cursor: pointer;
 	}
 }
 @media (min-width: 376px) {
@@ -43,9 +71,6 @@ body {
 			span {
 				padding: 0.75em;
 			}
-		}
-		&__container-name {
-			margin: 1.5em;
 		}
 	}
 }
@@ -57,10 +82,27 @@ body {
 		&__label {
 			font-size: 1.3rem;
 		}
-		&__container-name {
+		&__transaction-field {
 			font-size: 1rem;
+			input,
+			textarea,
+			select {
+				width: 200px;
+				height: 30px;
+				font-size: 0.9rem;
+			}
+			textarea {
+				max-width: 200px;
+				min-width: 200px;
+			}
 		}
-		&__container {
+		&__add-transaction-btn {
+			padding: 0.5em 1em;
+			font-size: 1rem;
+			transition: background 0.3s;
+			&:hover {
+				background-color: #15f5ba;
+			}
 		}
 	}
 }
@@ -72,17 +114,39 @@ body {
 		&__label {
 			font-size: 1.5rem;
 		}
-		&__container-name {
-			font-size: 1.1rem;
-		}
-		&__container {
-		}
 	}
 }
 @media (min-width: 992px) {
 	.transactions {
 		&__containers {
 			width: 70vw;
+		}
+		&__transaction-container {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+		}
+		&__transaction-field {
+			font-size: 1.1rem;
+			input,
+			textarea,
+			select {
+				width: 220px;
+				font-size: 1rem;
+			}
+			textarea {
+				max-width: 220px;
+				min-width: 220px;
+			}
+		}
+		&__add-transaction-btn {
+			padding: 1em 1.5em;
+		}
+	}
+}
+@media (min-width: 1200px) {
+	.transactions {
+		&__transaction-field {
+			margin: 0.25em 3em;
 		}
 	}
 }

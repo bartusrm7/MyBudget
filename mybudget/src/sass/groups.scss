@@ -25,10 +25,16 @@ body {
 	&__label {
 		margin: 2em;
 	}
-	&__group-input {
+	.group-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+	&__group-input,
+	&__add-group-btn {
 		padding: 0.5em;
-		margin: 0.25em 0;
-		width: 70%;
+		margin: 0.25em;
 		background-color: #f7fbfc;
 		font-size: 0.8rem;
 		border-radius: 5px;
@@ -37,16 +43,33 @@ body {
 			color: #222831;
 		}
 	}
-	&__container-name {
-		margin: 1em;
+	&__add-group-btn {
+		font-weight: bold;
+		cursor: pointer;
+	}
+	&__create-new-group-container {
+		margin: 0 1em;
+	}
+	&__created-group-container {
+		margin: 2em 0;
 		display: flex;
-		justify-content: center;
 	}
-	&__container {
-		width: 90vw;
+	&__created-group-items {
+		padding: 0.5em 1em;
+		margin: 0.25em;
+		width: 80vw;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: #fff;
+		font-size: 0.8rem;
+		font-weight: bold;
+		border-radius: 5px;
 	}
-	&__type-name {
-		background-color: #15f5ba;
+	.delete-item {
+		margin-left: 1em;
+		color: red;
+		cursor: pointer;
 	}
 }
 @media (min-width: 376px) {
@@ -56,14 +79,18 @@ body {
 				padding: 0.75em;
 			}
 		}
-		&__group-input {
-			margin: 2em 0 1em;
+		&__group-input,
+		&__add-group-btn {
+			font-size: 0.9rem;
 			input {
 				width: 60%;
 			}
 		}
-		&__container-name {
-			margin: 1.5em;
+		&__add-group-btn {
+			padding: 0.5em 2em;
+		}
+		&__created-group-items {
+			font-size: 0.9rem;
 		}
 	}
 }
@@ -75,8 +102,14 @@ body {
 		&__label {
 			font-size: 1.3rem;
 		}
-		&__container-name {
-			font-size: 1rem;
+		&__add-group-btn {
+			transition: background 0.3s;
+			&:hover {
+				background-color: #15f5ba;
+			}
+		}
+		&__created-group-items {
+			width: 70vw;
 		}
 	}
 }
@@ -88,8 +121,13 @@ body {
 		&__label {
 			font-size: 1.5rem;
 		}
-		&__container-name {
-			font-size: 1.1rem;
+		&__group-input,
+		&__add-group-btn {
+			font-size: 1rem;
+		}
+		&__created-group-items {
+			width: 60vw;
+			font-size: 1rem;
 		}
 	}
 }
@@ -97,6 +135,9 @@ body {
 	.groups {
 		&__containers {
 			width: 70vw;
+		}
+		&__created-group-items {
+			width: 50vw;
 		}
 	}
 }

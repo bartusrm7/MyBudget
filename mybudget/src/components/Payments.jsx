@@ -1,8 +1,16 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useGroupsContext } from "./GroupsContext";
 import Navigation from "./Navigation";
 
 export default function Payments() {
-	const [payments, setPayments] = useState([{ date: [] }, { title: [] }, { type: [] }, { amount: [] }]);
+	const { createdTransaction, setCreatedTransaction } = useGroupsContext();
+
+	useEffect(() => {
+		const savedTransactions = localStorage.getItem("transaction");
+		if (savedTransactions) {
+			setCreatedTransaction(JSON.parse(savedTransactions));
+		}
+	}, [setCreatedTransaction]);
 
 	return (
 		<div>
@@ -10,29 +18,37 @@ export default function Payments() {
 			<div className='payments'>
 				<div className='payments__main-container'>
 					<div className='payments__containers'>
-						<div className='payments__container-name'>History payments</div>
-						<div className='payments__container'>
-							<div className='payments__type-name'>
-								{payments.map((payment, index) => (
-									<div key={index} className='payments__name'>
-										{payment.date}
-									</div>
-								))}
-								{payments.map((payment, index) => (
-									<div key={index} className='payments__name'>
-										{payment.title}
-									</div>
-								))}
-								{payments.map((payment, index) => (
-									<div key={index} className='payments__name'>
-										{payment.type}
-									</div>
-								))}
-								{payments.map((payment, index) => (
-									<div key={index} className='payments__name'>
-										{payment.amount}
-									</div>
-								))}
+						<h3 className='payments__container-name'>History payments</h3>
+						<div className='payments__main-container'>
+							<div className='payments__container'>
+								<div className='payments__name-container'>
+									<div className='payments__name-of-type'>Name</div>
+									<div className='payments__name-of-type'>Amount</div>
+									<div className='payments__name-of-type'>Title</div>
+									<div className='payments__name-of-type'>Group</div>
+								</div>
+								<div className='payments__transaction-type'>
+									{createdTransaction.map(transaction => (
+										<div key={transaction.id} className='payments__transaction'>
+											{transaction.name}
+										</div>
+									))}
+									{createdTransaction.map(transaction => (
+										<div key={transaction.id} className='payments__transaction'>
+											{transaction.amount}
+										</div>
+									))}
+									{createdTransaction.map(transaction => (
+										<div key={transaction.id} className='payments__transaction'>
+											{transaction.title}
+										</div>
+									))}
+									{createdTransaction.map(transaction => (
+										<div key={transaction.id} className='payments__transaction'>
+											{transaction.group}
+										</div>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>

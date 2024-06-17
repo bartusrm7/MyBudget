@@ -3,7 +3,8 @@ import { useBalanceContext } from "./BalanceContext";
 import Navigation from "./Navigation";
 
 export default function Balance() {
-	const { activeCard, setActiveCard } = useBalanceContext();
+	const { activeCard, setActiveCard, ownerBalance, setOwnerBalance } = useBalanceContext();
+	zrobić ownerBalance i setOwnerBalance
 
 	const formatBalace = (number, symbols = "$") => {
 		const formated = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
