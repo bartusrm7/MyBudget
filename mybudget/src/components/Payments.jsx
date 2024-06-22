@@ -10,7 +10,7 @@ export default function Payments() {
 		if (savedTransactions) {
 			setCreatedTransaction(JSON.parse(savedTransactions));
 		}
-	}, [setCreatedTransaction]);
+	}, []);
 
 	return (
 		<div>
@@ -29,23 +29,13 @@ export default function Payments() {
 								</div>
 								<div className='payments__transaction-type'>
 									{createdTransaction.map(transaction => (
-										<div key={transaction.id} className='payments__transaction'>
-											{transaction.name}
-										</div>
-									))}
-									{createdTransaction.map(transaction => (
-										<div key={transaction.id} className='payments__transaction'>
-											{transaction.amount}
-										</div>
-									))}
-									{createdTransaction.map(transaction => (
-										<div key={transaction.id} className='payments__transaction'>
-											{transaction.title}
-										</div>
-									))}
-									{createdTransaction.map(transaction => (
-										<div key={transaction.id} className='payments__transaction'>
-											{transaction.group}
+										<div key={transaction.id} className='payments__transaction-container'>
+											<div className='payments__transaction'>{transaction.name}</div>
+											<div className='payments__transaction'>{transaction.amount}</div>
+											<div className='payments__transaction'>{transaction.title}</div>
+											<div className='payments__transaction' style={{ textTransform: "capitalize" }}>
+												{transaction.group}
+											</div>
 										</div>
 									))}
 								</div>

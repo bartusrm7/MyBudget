@@ -19,7 +19,7 @@ export default function Transactions() {
 		createdTransaction,
 		setCreatedTransaction,
 	} = useGroupsContext();
-	const { ownerBalance, setOwnerBalance } = useBalanceContext();
+	const { activeCard, setActiveCard, ownerBalance, setOwnerBalance } = useBalanceContext();
 
 	const saveUserTransaction = () => {
 		const newTransaction = {
@@ -30,11 +30,12 @@ export default function Transactions() {
 			group: transactionGroup,
 		};
 		const cardBalance = ownerBalance - transactionAmount;
+		localStorage.setItem("balance", cardBalance);
+		setOwnerBalance(cardBalance);
+
 		const updatedTransaction = [...createdTransaction, newTransaction];
 		setCreatedTransaction(updatedTransaction);
-		setOwnerBalance(cardBalance);
 		localStorage.setItem("transaction", JSON.stringify(updatedTransaction));
-		localStorage.setItem("balance", cardBalance);
 
 		setTransactionName("");
 		setTransactionAmount("");
@@ -47,6 +48,8 @@ export default function Transactions() {
 		setCreateGroup(JSON.parse(savedGroup));
 		const savedCardBalance = localStorage.getItem("balance");
 		setOwnerBalance(savedCardBalance);
+		const savedActiveCard = localStorage.getItem("activeCard");
+		setActiveCard(JSON.parse(savedActiveCard));
 	}, [setOwnerBalance]);
 
 	return (

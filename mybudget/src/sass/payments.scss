@@ -31,18 +31,19 @@ body {
 		display: flex;
 		border-radius: 5px;
 		border: 1px solid #222831;
-		overflow: hidden;
 	}
 	&__name-container {
 		display: grid;
 		grid-template-columns: 20% 15% 45% 20%;
+		font-weight: bold;
 	}
 	&__container {
 		width: 90vw;
 	}
 	&__name-of-type {
-		padding: 0.25em 0.5em;
+		padding: 0.25em;
 		background-color: #f7fbfc;
+		font-size: 0.7rem;
 		border: 1px solid #222831;
 	}
 	&__transaction-type {
@@ -50,8 +51,15 @@ body {
 		grid-template-columns: repeat(1, 1fr);
 		background-color: #15f5ba;
 	}
+	&__transaction-container {
+		display: grid;
+		grid-template-columns: 20% 15% 45% 20%;
+		font-size: 0.7rem;
+	}
 	&__transaction {
-		padding: 0.5em;
+		padding: 0.5em 0.25em;
+		display: flex;
+		align-items: center;
 		border: 1px solid #222831;
 	}
 }
@@ -64,6 +72,12 @@ body {
 		}
 		&__container-name {
 			margin: 1.5em;
+		}
+		&__name-of-type {
+			font-size: 0.8rem;
+		}
+		&__transaction-container {
+			font-size: 0.8rem;
 		}
 	}
 }
@@ -78,8 +92,9 @@ body {
 		&__container {
 			width: 80vw;
 		}
-		&__transaction-type {
-			grid-template-columns: 20% 15% 45% 20%;
+		&__name-of-type,
+		&__transaction {
+			padding: 0.5em;
 		}
 	}
 }
@@ -93,6 +108,10 @@ body {
 		}
 		&__container {
 			width: 75vw;
+		}
+		&__name-of-type,
+		&__transaction-container {
+			font-size: 0.9rem;
 		}
 	}
 }
