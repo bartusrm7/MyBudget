@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "./UserContext";
 
 export default function Log() {
+	const { setUserName } = useUserContext();
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
 	const [isLoginSuccessful, setIsLoginSuccessful] = useState(false);
@@ -42,6 +44,7 @@ export default function Log() {
 			localStorage.setItem("accessToken", data.accessToken);
 
 			setIsLoginSuccessful(true);
+			// setUserName(userLogin);
 			navigate("/main-component");
 		} catch (error) {
 			console.error("Error:", error);

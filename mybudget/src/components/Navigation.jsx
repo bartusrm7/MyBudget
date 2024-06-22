@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "./UserContext";
 
 export default function Navigation() {
 	const [hamburgerMenu, setHamburgerMenu] = useState(false);
 	const navigate = useNavigate();
-	const handleHamburgerMenu = () => {
-		setHamburgerMenu(!hamburgerMenu);
-	};
+	const { userName } = useUserContext();
+
+	const handleHamburgerMenu = () => setHamburgerMenu(!hamburgerMenu);
 	const handleLogout = () => {
 		localStorage.removeItem("accessToken");
 		navigate("/log");
@@ -38,7 +39,8 @@ export default function Navigation() {
 							<span className='material-symbols-outlined'>settings</span>Settings
 						</div>
 						<div className='navigation__navigation-item'>
-							<span className='material-symbols-outlined'>person</span>Account
+							<span className='material-symbols-outlined'>person</span>
+							{userName}
 						</div>
 						<div className='navigation__navigation-item' onClick={handleLogout}>
 							<span className='material-symbols-outlined'>logout</span>Logout

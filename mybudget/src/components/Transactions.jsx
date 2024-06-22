@@ -47,10 +47,10 @@ export default function Transactions() {
 		const savedGroup = localStorage.getItem("group");
 		setCreateGroup(JSON.parse(savedGroup));
 		const savedCardBalance = localStorage.getItem("balance");
-		setOwnerBalance(savedCardBalance);
+		setOwnerBalance(Number(savedCardBalance));
 		const savedActiveCard = localStorage.getItem("activeCard");
 		setActiveCard(JSON.parse(savedActiveCard));
-	}, [setOwnerBalance]);
+	}, [setOwnerBalance, setActiveCard]);
 
 	return (
 		<div>
