@@ -6,6 +6,7 @@ import Reg from "./components/Reg";
 import ProtectedRoute from "./components/ProtectedRoute";
 import UserProvider from "./components/UserContext";
 import MainComponent from "./components/MainComponent";
+import Statistics from "./components/Statistics";
 import Balance from "./components/Balance";
 import BalanceProvider from "./components/BalanceContext";
 import Transactions from "./components/Transactions";
@@ -26,6 +27,14 @@ export default function App() {
 								<Route path='/log-reg' element={<LogReg />} />
 								<Route path='/log' element={<Log />} />
 								<Route path='/reg' element={<Reg />} />
+								<Route
+									path='/statistics'
+									element={
+										<ProtectedRoute>
+											<Statistics />
+										</ProtectedRoute>
+									}
+								/>
 								<Route
 									path='/main-component'
 									element={

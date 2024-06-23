@@ -43,8 +43,10 @@ export default function Log() {
 			const data = await response.json();
 			localStorage.setItem("accessToken", data.accessToken);
 
+			const userLogin = localStorage.getItem("userLogin");
+
 			setIsLoginSuccessful(true);
-			// setUserName(userLogin);
+			setUserName(userLogin);
 			navigate("/main-component");
 		} catch (error) {
 			console.error("Error:", error);

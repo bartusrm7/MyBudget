@@ -1,17 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "./UserContext";
 
 export default function Navigation() {
 	const [hamburgerMenu, setHamburgerMenu] = useState(false);
 	const navigate = useNavigate();
-	const { userName } = useUserContext();
+	const { userName, setUserName } = useUserContext();
 
 	const handleHamburgerMenu = () => setHamburgerMenu(!hamburgerMenu);
 	const handleLogout = () => {
 		localStorage.removeItem("accessToken");
+		console.log(userName);
+		setUserName("");
 		navigate("/log");
 	};
+	useEffect(() => {
+		const userLogin = localStorage.getItem("userLogin");
+		setUserName(userLogin);
+		console.log(userLogin);
+	}, [setUserName]);
 
 	return (
 		<div>
@@ -33,10 +40,9 @@ export default function Navigation() {
 							</Link>
 						</div>
 						<div className='navigation__navigation-item'>
-							<span className='material-symbols-outlined'>monitoring</span>Statistics
-						</div>
-						<div className='navigation__navigation-item'>
-							<span className='material-symbols-outlined'>settings</span>Settings
+							<Link to='/statistics'>
+								<span className='material-symbols-outlined'>monitoring</span>Statistics
+							</Link>
 						</div>
 						<div className='navigation__navigation-item'>
 							<span className='material-symbols-outlined'>person</span>

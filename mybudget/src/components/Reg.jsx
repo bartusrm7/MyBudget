@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useUserContext } from "./UserContext";
 
 export default function Reg() {
-	const { setUserName } = useUserContext();
+	const { userName, setUserName } = useUserContext();
 	const [userLogin, setUserLogin] = useState("");
 	const [userEmail, setUserEmail] = useState("");
 	const [userPassword, setUserPassword] = useState("");
@@ -44,7 +44,7 @@ export default function Reg() {
 			}
 			const data = await response.json();
 			localStorage.setItem("accessToken", data.accessToken);
-			console.log(userLogin);
+			localStorage.setItem("userLogin", userLogin);
 
 			setIsRegisteredSuccessful(true);
 			setUserName(userLogin);
