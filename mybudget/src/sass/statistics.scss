@@ -1,0 +1,143 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+body {
+	color: #222831;
+	font-family: "Inter", sans-serif;
+}
+.statistics {
+	&__main-container {
+		display: flex;
+		justify-content: center;
+	}
+	&__containers {
+		width: 100vw;
+		min-height: 90vh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: #a3fde7;
+	}
+	&__label {
+		margin: 2em;
+	}
+	.group-container {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		align-items: center;
+	}
+	&__group-input,
+	&__add-group-btn {
+		padding: 0.5em;
+		margin: 0.25em;
+		background-color: #f7fbfc;
+		font-size: 0.8rem;
+		border-radius: 5px;
+		border: 1px solid #222831;
+		&::placeholder {
+			color: #222831;
+		}
+	}
+	&__add-group-btn {
+		font-weight: bold;
+		cursor: pointer;
+	}
+	&__create-new-group-container {
+		margin: 0 1em;
+	}
+	&__created-group-container {
+		margin: 2em 0;
+		display: flex;
+	}
+	&__created-group-items {
+		padding: 0.5em 1em;
+		margin: 0.25em;
+		width: 80vw;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		background-color: #fff;
+		font-size: 0.8rem;
+		font-weight: bold;
+		border-radius: 5px;
+	}
+	.delete-item {
+		margin-left: 1em;
+		color: red;
+		cursor: pointer;
+	}
+}
+@media (min-width: 376px) {
+	.statistics {
+		&__container {
+			span {
+				padding: 0.75em;
+			}
+		}
+		&__group-input,
+		&__add-group-btn {
+			font-size: 0.9rem;
+			input {
+				width: 60%;
+			}
+		}
+		&__add-group-btn {
+			padding: 0.5em 2em;
+		}
+		&__created-group-items {
+			font-size: 0.9rem;
+		}
+	}
+}
+@media (min-width: 576px) {
+	.statistics {
+		&__containers {
+			min-height: 85vh;
+		}
+		&__label {
+			font-size: 1.3rem;
+		}
+		&__add-group-btn {
+			transition: background 0.3s;
+			&:hover {
+				background-color: #15f5ba;
+			}
+		}
+		&__created-group-items {
+			width: 70vw;
+		}
+	}
+}
+@media (min-width: 768px) {
+	.statistics {
+		&__containers {
+			width: 80vw;
+		}
+		&__label {
+			font-size: 1.5rem;
+		}
+		&__group-input,
+		&__add-group-btn {
+			font-size: 1rem;
+		}
+		&__created-group-items {
+			width: 60vw;
+			font-size: 1rem;
+		}
+	}
+}
+@media (min-width: 992px) {
+	.statistics {
+		&__containers {
+			width: 70vw;
+		}
+		&__created-group-items {
+			width: 50vw;
+		}
+	}
+}

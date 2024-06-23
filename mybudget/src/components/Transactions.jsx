@@ -58,7 +58,7 @@ export default function Transactions() {
 			<div className='transactions'>
 				<div className='transactions__main-container'>
 					<div className='transactions__containers'>
-						<h3 className='transactions__label'>Make your transaction</h3>
+						<h3 className='transactions__name'>Make your transaction</h3>
 						<div className='transactions__transaction-container'>
 							<div className='transactions__transaction-field'>
 								<div className='transactions__transaction-name'>Name:</div>

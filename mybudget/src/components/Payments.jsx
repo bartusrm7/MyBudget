@@ -16,7 +16,7 @@ export default function Payments() {
 		<div>
 			<Navigation />
 			<div className='payments'>
-				<div className='payments__main-container'>
+				<div className='payments__main-containers'>
 					<div className='payments__containers'>
 						<h3 className='payments__container-name'>History payments</h3>
 						<div className='payments__main-container'>
