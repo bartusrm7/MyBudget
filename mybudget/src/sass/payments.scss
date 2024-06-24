@@ -22,8 +22,8 @@ body {
 		align-items: center;
 		background-color: #a3fde7;
 	}
-	&__container-name {
-		margin: 1em;
+	&__label {
+		margin: 2em;
 		display: flex;
 		justify-content: center;
 	}
@@ -34,7 +34,7 @@ body {
 	}
 	&__name-container {
 		display: grid;
-		grid-template-columns: 20% 15% 45% 20%;
+		grid-template-columns: 20% 20% 40% 20%;
 		font-weight: bold;
 	}
 	&__container {
@@ -53,7 +53,7 @@ body {
 	}
 	&__transaction-container {
 		display: grid;
-		grid-template-columns: 20% 15% 45% 20%;
+		grid-template-columns: 20% 20% 40% 20%;
 		font-size: 0.7rem;
 	}
 	&__transaction {
@@ -70,13 +70,14 @@ body {
 				padding: 0.75em;
 			}
 		}
-		&__container-name {
-			margin: 1.5em;
+		&__name-container {
+			grid-template-columns: 20% 17% 43% 20%;
 		}
 		&__name-of-type {
 			font-size: 0.8rem;
 		}
 		&__transaction-container {
+			grid-template-columns: 20% 17% 43% 20%;
 			font-size: 0.8rem;
 		}
 	}
@@ -86,15 +87,21 @@ body {
 		&__containers {
 			min-height: 85vh;
 		}
-		&__container-name {
-			font-size: 1rem;
+		&__label {
+			font-size: 1.3rem;
 		}
 		&__container {
 			width: 80vw;
 		}
+		&__name-container {
+			grid-template-columns: 20% 13% 47% 20%;
+		}
 		&__name-of-type,
 		&__transaction {
 			padding: 0.5em;
+		}
+		&__transaction-container {
+			grid-template-columns: 20% 13% 47% 20%;
 		}
 	}
 }
@@ -103,8 +110,8 @@ body {
 		&__containers {
 			width: 80vw;
 		}
-		&__container-name {
-			font-size: 1.1rem;
+		&__label {
+			font-size: 1.5rem;
 		}
 		&__container {
 			width: 75vw;
@@ -122,6 +129,12 @@ body {
 		}
 		&__container {
 			width: 65vw;
+		}
+		&__name-container {
+			grid-template-columns: 20% 11% 49% 20%;
+		}
+		&__transaction-container {
+			grid-template-columns: 20% 11% 49% 20%;
 		}
 	}
 }

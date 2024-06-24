@@ -25,7 +25,7 @@ export default function Balance() {
 			<div className='balance'>
 				<div className='balance__main-container'>
 					<div className='balance__containers'>
-						<h3 className='balance__label'>Your current balance:</h3>
+						<h3 className='balance__label'>Your current balance</h3>
 						<div className='balance__current-balance'>
 							{activeCard ? formatBalance(activeCard.balance) : "No active card selected!"}
 						</div>

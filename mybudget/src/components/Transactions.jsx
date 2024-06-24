@@ -18,17 +18,32 @@ export default function Transactions() {
 		setTransactionGroup,
 		createdTransaction,
 		setCreatedTransaction,
+		setTransactionData,
 	} = useGroupsContext();
 	const { activeCard, setActiveCard, ownerBalance, setOwnerBalance } = useBalanceContext();
 
 	const saveUserTransaction = () => {
+		const currentDate = new Date();
+		const formattedDate = `${currentDate.getDate()}-${
+			currentDate.getMonth() + 1
+		}-${currentDate.getFullYear()} ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+		setTransactionData(formattedDate);
+
 		const newTransaction = {
 			id: uuid4v(),
 			name: transactionName,
 			amount: transactionAmount,
 			title: transactionTitle,
 			group: transactionGroup,
+			date: formattedDate,
 		};
+		if (transactionName === "" || transactionAmount === "" || transactionTitle === "" || transactionGroup === "" || !activeCard) {
+			console.log("koko");
+			return;
+		} else {
+			console.log("jajca");
+		}
+
 		const cardBalance = ownerBalance - transactionAmount;
 		localStorage.setItem("balance", cardBalance);
 		setOwnerBalance(cardBalance);
@@ -58,7 +73,7 @@ export default function Transactions() {
 			<div className='transactions'>
 				<div className='transactions__main-container'>
 					<div className='transactions__containers'>
-						<h3 className='transactions__name'>Make your transaction</h3>
+						<h3 className='transactions__label'>Make your transaction</h3>
 						<div className='transactions__transaction-container'>
 							<div className='transactions__transaction-field'>
 								<div className='transactions__transaction-name'>Name:</div>

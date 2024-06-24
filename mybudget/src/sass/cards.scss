@@ -23,7 +23,7 @@ body {
 		background-color: #a3fde7;
 	}
 	&__label {
-		margin-top: 2em;
+		margin: 2em;
 	}
 	&__container {
 		display: flex;
@@ -35,7 +35,6 @@ body {
 	}
 	&__card {
 		position: relative;
-		margin-top: 2em;
 		min-width: 280px;
 		min-height: 180px;
 		display: flex;

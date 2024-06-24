@@ -9,6 +9,7 @@ export default function GroupsProvider({ children }) {
 	const [transactionAmount, setTransactionAmount] = useState("");
 	const [transactionTitle, setTransactionTitle] = useState("");
 	const [transactionGroup, setTransactionGroup] = useState("");
+	const [transactionData, setTransactionData] = useState("");
 	const [createdTransaction, setCreatedTransaction] = useState([]);
 
 	return (
@@ -28,6 +29,8 @@ export default function GroupsProvider({ children }) {
 				setTransactionGroup,
 				createdTransaction,
 				setCreatedTransaction,
+				transactionData,
+				setTransactionData,
 			}}>
 			{children}
 		</GroupsContext.Provider>

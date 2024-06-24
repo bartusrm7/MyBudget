@@ -10,14 +10,12 @@ export default function Navigation() {
 	const handleHamburgerMenu = () => setHamburgerMenu(!hamburgerMenu);
 	const handleLogout = () => {
 		localStorage.removeItem("accessToken");
-		console.log(userName);
 		setUserName("");
 		navigate("/log");
 	};
 	useEffect(() => {
 		const userLogin = localStorage.getItem("userLogin");
 		setUserName(userLogin);
-		console.log(userLogin);
 	}, [setUserName]);
 
 	return (
